@@ -1,7 +1,7 @@
 package config;
 
 public class Config {
-    public static final String browser="firefox"; // chrome, firefox
+    public static final String browser="chrome"; // chrome, firefox
     public static final String superUser="SADMIN";
     public static final String superPassword="admin@123";
     public static final String superFinancial="ENS";

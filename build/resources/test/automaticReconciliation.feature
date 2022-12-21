@@ -24,9 +24,9 @@ Feature: Automatic Reconciliation
     And user moves mouse over Task Operations menu
     And user clicks on Automatic Reconciliation submenu
     Then system displays Automatic Reconciliation page
-    And on Automatic Reconciliation page user selects "SVBO" from Transaction Type dropdown
+    And on Automatic Reconciliation page user selects "SVFE-SVBO" from Transaction Type dropdown
     And on Automatic Reconciliation page user clicks on Reconciliation button
-    Then Automatic Reconciliation page display an alert message containing "Automatic reconciliation completed successfully"
+    Then Automatic Reconciliation page display an alert message containing "Are you Sure Automatic Reconciliation ?"
     And tenant user clicks on logout button
 
   Scenario: Automatic Reconciliation page integrity without mandatory data

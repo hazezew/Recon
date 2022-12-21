@@ -3,6 +3,7 @@ package stepDef;
 import config.Config;
 import config.CucumberExtentReporter;
 import config.JiraIssue;
+import config.UnlockLockedUser;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -97,6 +98,7 @@ public class Hook {
     }
     @Before(order = 2)
     public void beforeScenario(Scenario scenario){
+        UnlockLockedUser.unlockAllUsers();
         if(!isReporterRunning){
             cucumberExtentReporter=new CucumberExtentReporter();
             isReporterRunning=true;

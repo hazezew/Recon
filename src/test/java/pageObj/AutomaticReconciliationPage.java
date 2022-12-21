@@ -44,7 +44,7 @@ public class AutomaticReconciliationPage {
         try{
             Alert alert=driver.switchTo().alert();
             alertMessage=alert.getText();
-            alert.accept();
+            alert.dismiss();
         }catch (Exception e){}
     }
     public String getAlertMessage(){

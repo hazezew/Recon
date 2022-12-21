@@ -66,7 +66,7 @@ public class CucumberExtentReporter {
                     extentTest.pass(MarkupHelper.createLabel("SCENARIO PASSED", ExtentColor.GREEN));
                     break;
                 case FAILED:
-                    UnlockLockedUser.unlockAllUsers();
+//                    UnlockLockedUser.unlockAllUsers();
                     extentTest.fail(MarkupHelper.createLabel("SCENARIO FAILED",ExtentColor.RED));
                     captureScreenshot(driver,filePath);
                     try {

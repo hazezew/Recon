@@ -1,34 +1,34 @@
 package config;
 
-import java.sql.*;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 public class UnlockLockedUser {
-    private String dbConnectionProperty = "";
-    private String superUser = Config.superUser;
-    private String makerUserName = Config.makerUserName;
-    private String checkerUserName = Config.checkerUserName;
-    private String directUserName = Config.directUserName;
+    private static String dbConnectionString= "jdbc:oracle:thin:@192.168.20.41:1521:rec";
+    private static String dbUsername="RECCON";
+    private static String dbPassword="reccon123";
 
     public static void unlockAllUsers() {
         Connection con = null;
         Statement st = null;
-        String sql = "UPDATE RECON_USER_INFORMATION SET USER_LOGINSTATUS=0 " +
+        PreparedStatement ps;
+        String sql ="UPDATE RECON_USER_INFORMATION SET USER_LOGINSTATUS=0 " +
                 "where USER_NAME IN('" + Config.superUser + "','" + Config.checkerUserName + "','" +
                 Config.makerUserName + "','" + Config.directUserName + "') " +
-                "and USER_LOGINSTATUS=1;";
-
+                "and USER_LOGINSTATUS<>0";
         try {
-            System.out.println("I am in unlock method and just in try block");
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            con = DriverManager.getConnection("jdbc:oracle:thin:@//192.168.20.41:1521:rec", "reccon", "reccon123");
+            DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
+            con = DriverManager.getConnection(dbConnectionString, dbUsername,dbPassword);
+            con.setAutoCommit(true);
             st = con.createStatement();
-            System.out.println("I am here just before running a query");
-            st.execute(sql);
-            st.execute("COMMIT;");
-            System.out.println("I am here after running unlock class");
+            ps=con.prepareStatement(sql);
+            ps.executeUpdate(sql);
+            System.out.println("Unlock user completed successfully");
         } catch (Exception e) {
-            System.out.println("Exception info: " + e.getStackTrace());
+            System.out.println(e.getMessage());
+            System.out.println("Exception: " + e.getStackTrace());
             try {
                 st.close();
                 con.close();
