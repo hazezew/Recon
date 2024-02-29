@@ -28,4 +28,3 @@ Feature: Mapping Entities Management
     And on Mapping Entities page user selects "ENS" from financial name dropdown
     And on Mapping Entities page user clicks on Cancel button
     And tenant user clicks on logout button
-

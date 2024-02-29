@@ -77,6 +77,9 @@ public class SuperAdminDashboard {
     @FindBy(linkText = "Request Forget Password")
     private WebElement linkRequestForgetPassword;
 
+    @FindBy(xpath = "//span[text()=\"Reports\"]")
+    private WebElement linkReports;
+
     public SuperAdminDashboard(WebDriver driver){
         this.driver=driver;
         wait=new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -156,6 +159,11 @@ public class SuperAdminDashboard {
         wait.until(ExpectedConditions.visibilityOf(linkRequestForgetPassword));
         linkRequestForgetPassword.click();
         return new ForgottenPasswordPage(driver);
+    }
+
+    public DailyInteroperableDisputeTransactionsReportPage clickLinkReports(){
+        wait.until(ExpectedConditions.visibilityOf(linkReports)).click();
+        return new DailyInteroperableDisputeTransactionsReportPage(driver);
     }
 
     public LoginPage clickLinkLogout(){

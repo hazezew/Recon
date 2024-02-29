@@ -46,7 +46,7 @@ public class AddProfilePage {
         txtProfileName.sendKeys(profile);
     }
     public void clickBtnSave(){
-        action.moveToElement(btnSave).perform();
+        action.moveToElement(btnSave).build().perform();
         wait.until(ExpectedConditions.visibilityOf(btnSave));
         btnSave.click();
         wait.until(ExpectedConditions.alertIsPresent());
